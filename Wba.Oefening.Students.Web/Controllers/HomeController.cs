@@ -39,6 +39,41 @@ namespace Wba.Oefening.Students.Web.Controllers
             return View(homeShowStudentsViewModel);
         }
 
+        
+        [Route("Courses/{courseId:long}/students")]
+        public IActionResult ShowStudentsInCourse(long courseId)
+        {
+            //reuse view model and view
+            ////get the students in courseId
+            //var students = studentRepository
+            //    .GetStudentsInCourseId(courseId);
+            ////declare model
+            //HomeShowStudentsViewModel
+            //    homeShowStudentsInCourseViewModel
+            //    = new HomeShowStudentsViewModel();
+            //homeShowStudentsInCourseViewModel
+            //    .StudentNames
+            //    = students.Select(s => $"{s.FirstName} {s.LastName}")
+            //    .ToList();
+            ////pass to the view
+            //return View("ShowStudents", homeShowStudentsInCourseViewModel);
+
+            //with own view model and view
+            //get the students in courseId
+            var students = studentRepository
+                .GetStudentsInCourseId(courseId);
+            //declare model
+            HomeShowStudentsInCourseViewModel
+                homeShowStudentsInCourseViewModel
+                = new HomeShowStudentsInCourseViewModel();
+            homeShowStudentsInCourseViewModel
+                .StudentNames
+                = students.Select(s => $"{s.FirstName} {s.LastName}");
+                
+            //pass to the view
+            return View(homeShowStudentsInCourseViewModel);
+        }
+
         public IActionResult Index()
         {
             ViewBag.Title = "Student App";
@@ -46,7 +81,26 @@ namespace Wba.Oefening.Students.Web.Controllers
             return View();
         }
 
+        
+        [Route("students/{studentId:long}")]
+        public IActionResult ShowStudentInfo(long studentId)
+        {
+            //get the data
+            var student = studentRepository.GetStudentById(studentId);
 
+            var studentCourses = studentRepository.GetCoursesForStudentById(studentId);
+            //use course collection from student class
+            /*var studentCourses = student.Courses;*/
+            //viewmodel
+            HomeShowStudentInfoViewModel homeShowStudentInfoViewModel
+                = new HomeShowStudentInfoViewModel();
+            //fill the model
+            homeShowStudentInfoViewModel.StudentName
+                = $"{student.FirstName} {student.LastName}";
+            homeShowStudentInfoViewModel.StudentCourses = studentCourses.Select(c => c.Name);
+            //pass to view
+            return View(homeShowStudentInfoViewModel);
+        }
 
         [Route("Courses")]
         public IActionResult ShowCourses()

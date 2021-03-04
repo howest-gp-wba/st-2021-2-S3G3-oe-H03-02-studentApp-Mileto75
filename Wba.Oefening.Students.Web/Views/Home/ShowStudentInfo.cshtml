@@ -1,0 +1,19 @@
+﻿@model HomeShowStudentInfoViewModel
+
+
+<h2>StudentInfo</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">
+            @Model.StudentName
+        </h2>
+        <ul>
+            @foreach(var courseTitle in Model.StudentCourses)
+            {
+                <li>@courseTitle</li>
+            }
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+﻿@model HomeShowStudentsInCourseViewModel
+
+<h2>Students</h2>
+<table class="table table-hover table-responsive">
+    <tr>
+        <th>Course title</th>
+    </tr>
+    @* loop through studentNames*@
+    @foreach (var studentName in
+       Model.StudentNames)
+    {
+        <tr>
+            <td>@studentName</td>
+        </tr>
+    }
+</table>
+
