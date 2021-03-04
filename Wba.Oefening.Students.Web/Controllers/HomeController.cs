@@ -23,12 +23,30 @@ namespace Wba.Oefening.Students.Web.Controllers
             teacherRepository = new TeacherRepository();
         }
 
+        [Route("Students")]
+        public IActionResult ShowStudents()
+        {
+            //get the students
+            var students = studentRepository.Students;
+            //viewModel
+            HomeShowStudentsViewModel homeShowStudentsViewModel
+                = new HomeShowStudentsViewModel();
+            homeShowStudentsViewModel.StudentNames
+                = students
+                .Select(s => $"{s.FirstName} " +
+                $"{s.LastName}")
+                .ToList();
+            return View(homeShowStudentsViewModel);
+        }
+
         public IActionResult Index()
         {
             ViewBag.Title = "Student App";
             ViewBag.Message = "Welcome on our Student App";
             return View();
         }
+
+
 
         [Route("Courses")]
         public IActionResult ShowCourses()
