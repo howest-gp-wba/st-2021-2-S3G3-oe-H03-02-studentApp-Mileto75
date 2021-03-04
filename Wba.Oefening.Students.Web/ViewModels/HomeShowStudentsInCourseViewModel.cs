@@ -9,5 +9,7 @@ namespace Wba.Oefening.Students.Web.ViewModels
     {
         public IEnumerable<string> StudentNames
         { get; set; }
+        public IEnumerable<string> TeacherNames { get; set; }
+        public string CourseTitle { get; set; }
     }
 }

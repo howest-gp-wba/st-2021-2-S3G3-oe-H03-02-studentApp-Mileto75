@@ -62,6 +62,13 @@ namespace Wba.Oefening.Students.Web.Controllers
             //get the students in courseId
             var students = studentRepository
                 .GetStudentsInCourseId(courseId);
+            //get the teachers from courseId
+            var teachers = teacherRepository
+                .GetTeachersByCourseId(courseId);
+            //get the course title
+            var courseTitle = courseRepository
+                .GetCourseById(courseId)
+                .Name;
             //declare model
             HomeShowStudentsInCourseViewModel
                 homeShowStudentsInCourseViewModel
@@ -69,7 +76,9 @@ namespace Wba.Oefening.Students.Web.Controllers
             homeShowStudentsInCourseViewModel
                 .StudentNames
                 = students.Select(s => $"{s.FirstName} {s.LastName}");
-                
+            homeShowStudentsInCourseViewModel.TeacherNames =
+                teachers.Select(t => $"{t.FirstName} {t.LastName}");
+            homeShowStudentsInCourseViewModel.CourseTitle = courseTitle;
             //pass to the view
             return View(homeShowStudentsInCourseViewModel);
         }
