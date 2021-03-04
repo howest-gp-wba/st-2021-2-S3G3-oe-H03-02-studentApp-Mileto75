@@ -7,8 +7,10 @@ namespace Wba.Oefening.Students.Web.ViewModels
 {
     public class HomeShowCoursesViewModel
     {
-        public IEnumerable<string> 
-            CourseTitles { get; set; }
+        //public IEnumerable<string> 
+        //    CourseTitles { get; set; }
         //List<string> CourseTitles;
+        public List<HomeCoursesViewModel> Courses { get; set; }
+        = new List<HomeCoursesViewModel>();
     }
 }

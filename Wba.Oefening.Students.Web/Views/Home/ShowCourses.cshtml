@@ -6,10 +6,10 @@
         <th>Course title</th>
     </tr>
     @* loop through coursetitles *@
-    @foreach(var courseTitle in Model.CourseTitles)
+    @foreach(var course in Model.Courses)
     {
         <tr>
-            <td>@courseTitle</td>
+            <td><a href="courses/@course.Id/students"> @course.CourseTitle</a></td>
         </tr>
     }
 </table>

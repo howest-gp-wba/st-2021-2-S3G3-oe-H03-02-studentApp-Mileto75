@@ -111,8 +111,17 @@ namespace Wba.Oefening.Students.Web.Controllers
             HomeShowCoursesViewModel homeShowCoursesViewModel
                 = new HomeShowCoursesViewModel();
             //fill the viewmodel
-            homeShowCoursesViewModel.CourseTitles =
-                courses.Select(c => c.Name);
+            //loop through courses
+            foreach(var course in courses)
+            {
+                homeShowCoursesViewModel.Courses.Add(
+                    new HomeCoursesViewModel
+                    {
+                        Id = course?.Id,
+                        CourseTitle = course?.Name
+                    }
+                    );
+            }
             //send to view
             return View(homeShowCoursesViewModel);
         }
