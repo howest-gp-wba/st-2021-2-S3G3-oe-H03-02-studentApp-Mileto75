@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Wba.Oefening.Students.Web.Models;
 using Wba.Oefening.Students.Domain;
+using Wba.Oefening.Students.Web.ViewModels;
 
 namespace Wba.Oefening.Students.Web.Controllers
 {
@@ -27,6 +28,21 @@ namespace Wba.Oefening.Students.Web.Controllers
             ViewBag.Title = "Student App";
             ViewBag.Message = "Welcome on our Student App";
             return View();
+        }
+
+        [Route("Courses")]
+        public IActionResult ShowCourses()
+        {
+            //get the courses
+            var courses = courseRepository.Courses;
+            //declare view model
+            HomeShowCoursesViewModel homeShowCoursesViewModel
+                = new HomeShowCoursesViewModel();
+            //fill the viewmodel
+            homeShowCoursesViewModel.CourseTitles =
+                courses.Select(c => c.Name);
+            //send to view
+            return View(homeShowCoursesViewModel);
         }
 
         public IActionResult Privacy()

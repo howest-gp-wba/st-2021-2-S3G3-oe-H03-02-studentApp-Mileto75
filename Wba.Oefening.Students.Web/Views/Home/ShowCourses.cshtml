@@ -1,0 +1,16 @@
+﻿@model HomeShowCoursesViewModel
+
+<h2>Courses</h2>
+<table class="table table-hover table-responsive">
+    <tr>
+        <th>Course title</th>
+    </tr>
+    @* loop through coursetitles *@
+    @foreach(var courseTitle in Model.CourseTitles)
+    {
+        <tr>
+            <td>@courseTitle</td>
+        </tr>
+    }
+</table>
+
